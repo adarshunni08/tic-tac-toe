@@ -9,7 +9,6 @@ function player(name) {
             playerOne.marker = 'O'
             playerTwo.marker = 'X'
         }
-        console.log(playerOne.marker)
     }
 }
 
@@ -17,3 +16,18 @@ function player(name) {
 const playerOne = new player("adarsh")
 const playerTwo = new player("ayana")
 
+playerOne.weapon('X')
+
+function gameBoard(arr,input,playerNumber) {
+    if (playerNumber === playerOne){
+        arr[input] = playerOne.marker
+    }
+    else{
+        arr[input] = playerTwo.marker
+    }
+}
+
+
+function game(){
+    
+}
