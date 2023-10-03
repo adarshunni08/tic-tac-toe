@@ -20,35 +20,59 @@ function game(arr,winner){
     for (let i=0; i<5; i++){
         if (i === 0 ){
             if (((arr[i] === arr[i+1] && arr[i+1] === arr[i+2]) || (arr[i] === arr[i+3] && arr[i+3] === arr[i+6]) || (arr[i] === arr[i+4] && arr[i+4] === arr[i+8])) && (arr[i] !== "none")){
-                announcementContent.textContent = "WINNER!!!"     
+                if (currentPlayer === playerOne){
+                    announcementContent.textContent = "WINNER: Player Two" 
+                }
+                else{
+                    announcementContent.textContent = "WINNER: Player One" 
+                }      
                 winner = "found"
                 gameFinished = "yes"
             }       
         }
         else if (i === 1){
             if ((arr[i] === arr[i+3] && arr[i+3] === arr[i+6]) && arr[i] !== "none"){
-                announcementContent.textContent = "WINNER!!!"
+                if (currentPlayer === playerOne){
+                    announcementContent.textContent = "WINNER: Player Two" 
+                }
+                else{
+                    announcementContent.textContent = "WINNER: Player One" 
+                }                 
                 winner = "found"
                 gameFinished = "yes"
             }
         }
         else if (i === 2){
             if (((arr[i] === arr[i+2] && arr[i+2] === arr[i+4]) || (arr[i] === arr[i+3] && arr[i+3] === arr[i+6])) && arr[i] !== "none"){
-                announcementContent.textContent = "WINNER!!!"
-                winner = "found"
+                if (currentPlayer === playerOne){
+                    announcementContent.textContent = "WINNER: Player Two" 
+                }
+                else{
+                    announcementContent.textContent = "WINNER: Player One"
+                }                 winner = "found"
                 gameFinished = "yes"
             } 
         }
         else if (i === 3){
             if ((arr[i] === arr[i+1] && arr[i+1] === arr[i+2]) && arr[i] !== "none"){
-                announcementContent.textContent = "WINNER!!!"
+                if (currentPlayer === playerOne){
+                    announcementContent.textContent = "WINNER: Player Two" 
+                }
+                else{
+                    announcementContent.textContent = "WINNER: Player One" 
+                }
                 winner = "found"
                 gameFinished = "yes"
             }
         }
         else{
             if ((arr[i+2] === arr[i+3] && arr[i+3] === arr[i+4]) && arr[i+2] !== "none"){
-                announcementContent.textContent = "WINNER!!!"
+                if (currentPlayer === playerOne){
+                    announcementContent.textContent = "WINNER: Player Two" 
+                }
+                else{
+                    announcementContent.textContent = "WINNER: Player One" 
+                }              
                 winner = "found"
                 gameFinished = "yes"
             }
