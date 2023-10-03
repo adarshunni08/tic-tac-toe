@@ -13,40 +13,44 @@ function gameBoard(arr,input,playerNumber) {
     else{
         arr[input] = playerTwo.marker
     }
-    console.log(arr)
+
 }
 
-function game(arr,Winner){
+function game(arr,winner){
     for (let i=0; i<5; i++){
         if (i === 0 ){
             if (((arr[i] === arr[i+1] && arr[i+1] === arr[i+2]) || (arr[i] === arr[i+3] && arr[i+3] === arr[i+6]) || (arr[i] === arr[i+4] && arr[i+4] === arr[i+8])) && (arr[i] !== "none")){
                 announcementContent.textContent = "WINNER!!!"     
-                Winner = "found"
+                winner = "found"
                 gameFinished = "yes"
             }       
         }
         else if (i === 1){
             if ((arr[i] === arr[i+3] && arr[i+3] === arr[i+6]) && arr[i] !== "none"){
                 announcementContent.textContent = "WINNER!!!"
-                Winner = "found"
+                winner = "found"
+                gameFinished = "yes"
             }
         }
         else if (i === 2){
             if (((arr[i] === arr[i+2] && arr[i+2] === arr[i+4]) || (arr[i] === arr[i+3] && arr[i+3] === arr[i+6])) && arr[i] !== "none"){
                 announcementContent.textContent = "WINNER!!!"
-                Winner = "found"
+                winner = "found"
+                gameFinished = "yes"
             } 
         }
         else if (i === 3){
             if ((arr[i] === arr[i+1] && arr[i+1] === arr[i+2]) && arr[i] !== "none"){
                 announcementContent.textContent = "WINNER!!!"
-                Winner = "found"
+                winner = "found"
+                gameFinished = "yes"
             }
         }
         else{
             if ((arr[i+2] === arr[i+3] && arr[i+3] === arr[i+4]) && arr[i+2] !== "none"){
                 announcementContent.textContent = "WINNER!!!"
-                Winner = "found"
+                winner = "found"
+                gameFinished = "yes"
             }
         }
     }
@@ -57,7 +61,7 @@ function game(arr,Winner){
             break
         }
     }
-    if (found === "false" && Winner === "notFound"){
+    if (found === "false" && winner === "notFound"){
         announcementContent.textContent = "It's a TIE !!!"
     }
     
@@ -79,18 +83,19 @@ announcementContent.style.fontSize = '32px';
 announcementContent.style.fontFamily = 'Times New Roman'
 
 let gameFinished = "no"
+let arr = []
+let currentPlayer = playerOne
 for (let i=0; i<newGame.length; i++){
     newGame[i].addEventListener('click', () => {
-        let arr = []
         for (let i=0; i<9; i++){
             arr[i] = "none"
-            gridItems[i].textContent = null
+            gridItems[i].style.backgroundColor = 'white'
         }
 
-        let currentPlayer = playerOne
+        currentPlayer = playerOne
         playerOne.weapon('X')
         playerTwo.weapon('O')
-        let Winner = "notFound"
+        let winner = "notFound"
         announcementContent.textContent = "New Game!!! Player 1, it's your turn."
 
         gameFinished = "no"
@@ -106,14 +111,16 @@ for (let i=0; i<newGame.length; i++){
                         gameBoard(arr,i,playerTwo)
                         announcementContent.textContent = "Next Turn: Player 1"
                     }
-
                     if (currentPlayer === playerOne){
                         currentPlayer = playerTwo
+                        gridItems[i].style.backgroundColor = 'red'
+
                     }
                     else{
                         currentPlayer = playerOne
+                        gridItems[i].style.backgroundColor = 'blue'
                     }
-                    game(arr,Winner)
+                    game(arr,winner)
                 }
             })
         }
